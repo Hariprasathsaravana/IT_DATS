@@ -1,0 +1,252 @@
+Data type 
+ 1. Numeric datatype 
+ 2. string data type
+
+
+
+Implementaion of SQL 
+--------------------
+
+DDl Commands 
+------------
+
+create,alter,drop,add,modify,truncate . 
+
+
+
+
+1.Create 
+--------
+
+Create table Student_Details(student_name varchar(255) ;
+
+2.Alter
+-------
+1.ADD
+-----
+
+alter student_details add  student_department varchar(255) not null;
+
+
+
+Add Primary Key
+---------------
+
+alter table student_details add PRIMARY KEY (`student_regno`); 
+
+( primary key and auto_increment should be done before adding values )
+
+Auto increment
+--------------
+
+alter table tablename change `oldname` `newname` dataype[size] auto_increment; 
+alter table student_details CHANGE `student_regno` `student_regnum` int(8) AUTO_INCREMENT;
+alter table student_details add auto_increment (`student_regnum`); // we can also add auto increment for an coloumn by this method.
+
+
+2.change
+--------
+
+alter table tablename mentionyourcolumnname  CHANGE newcoloumnname datatype[size] notnull;
+
+example : alter table student_details CHANGE`student_number` `student_mobileno` bigint null;
+
+3.drop
+------
+column drop 
+ alter table student_details drop column `student_percentage`;
+
+
+
+
+Data manipulation language-DML
+------------------------------
+
+insert,update,delete.
+
+
+1.Insert 
+
+insert into tablename values (...........);    ( to use this method we need to remember the order of the table )
+
+
+or
+
+INSERT INTO `student_details` 
+(`student_name`,`student_age`,`student_place`,`student_mobileno`,`student_department`) values ('Haritha',20,'salem',5678,'IT'); 
+
+2.Update
+
+update tablename set column = 'newvalue' where columnname=value;
+
+
+
+update student_details set `student_age=24`,`student_department`=`MBA` where `student_name`=`hari`;
+
+
+
+3.Delete
+--------
+
+delete from tablename where student name='hari';
+
+
+
+
+
+DQL-Data Querry language
+------------------------
+slect
+-----
+1.Display All Data 
+------------------
+
+Selct * from tablename;
+
+
+2.Distinct - return only without duplicate values
+----------
+select distinct student_place from student_details;
+
+3.count - list total members of count 
+--------
+
+select count(*) from student_details;
+
+4.Alias-changing a column name in runtime execution
+-------
+
+select count (*) as totalmembers from student_details;
+
+5.where - select all with conditions
+------- 
+
+select * from student_details  where `student_place`=`namakkal`;
+
+6.AND - two conditions
+------ 
+
+select * from student_details where student_age >= 10 AND `student_place` = `namakkal`;
+
+7. Not - 
+------
+ 
+select * from students_details where not `student_age` >=30 ;
+
+8. Between- Intermediate value 
+----------
+
+select * from student_details where `student_regnum` between 01 and 05 ;
+
+9. or -
+-----
+
+select * from student_details where `student_name`=`Hari` or `student_age` >=20 ;
+
+10. order by
+------------
+
+select * from student_details 
+
+
+
+Grant
+-----
+
+syntex :
+grant all privileges ON tablename TO USERNAME;
+Ex 1:
+grant all privileges ON studentdetails TO user;
+EX 2;
+grant select,alter,drop ON technologies TO Manoj;
+
+Show mw my table Grants
+-----------------------
+
+SHOW GRANTS FOR 'Amit@'@'localhost';
+
+
+
+
+
+REVOKE
+------
+
+syntax;
+
+REVOKE previlege ON table TO  username;
+
+EX1:
+REVOKE select,alter,ON student To admin ;
+
+
+TCL(Transaction control language)
+commit
+rollback
+savepoint
+
+
+commit
+------
+commit;
+
+savepoint
+---------
+insert into studentvalue(1,'manoj','MCA');
+insert into studentvalue (2,'annamalai','CSE');
+insert into student value (3,'Jack','EEE');
+
+Savepoint freshers;
+
+update student set studentname="kavi" where studentID=3;
+
+savepoint updation;
+
+delete from student set where studentid=3;
+savepoint current people;
+
+Rollback
+--------
+
+rollback to updation ;
+
+update student_data set student_age=22 where student_age=21;
+alter student_data change_age student_percentage;
+
+
+
+FOREIGN KEY
+-----------
+
+create a table with studentdetails one column is assigned primarykey that column accessed to foreign key performance.
+
+syntax
+------
+
+create table tablename(c1,c2,c3(same as firsttable primarykey columnname),foreign key (current class columnname same as anothertable column)
+reference anothertablename(anothertablename primary key columnname ));
+
+
+create table deptdetails(dept_id int(8)not null,dept_name , stu_id , foreignkey(stud_id)
+reference studentdetails(stud_id);
+
+
+
+studentdetails values                                                          departmentdetails
+---------------------                                                          -----------------
+101,manoj,chennai                                                               1001,cse,101------->added successfully 
+102,Haritha,pondi                                                               1002,MCA,104------->added successfully
+103,pavi,Hosur                                                                  1004,MBA,105------->not added (student not available in studenttable )
+104,Swetha,Namakkal
+
+
+
+
+
+constraints
+-----------
+1.not null - not empty 
+2.unique - not repeat     ( we can use this methods common for all coloumn )
+3.primary - do both work of not null and unique ( we can assign primary key for one particular coloumn and that coloumn will not assign as null as well it will not repeat again.)
+
+
